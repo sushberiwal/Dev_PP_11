@@ -11,4 +11,4 @@ console.log(f1KaData + "");
 
 
 fs.writeFileSync("index.html" , "Hello world !!!");
-
+fs.writeFileSync("../activity/activity.js" , "akjsbfkjabsf");

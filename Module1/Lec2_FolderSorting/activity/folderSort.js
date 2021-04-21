@@ -17,13 +17,6 @@ function getExtension(file){
     return file[1];
 }
 
-// {
-//     "Documents" : ["doc" , "pdf" , "txt" ],
-//     "Images": ["img" , "jpg" , "gif" , "png"],
-//     "Audio": ["mp3"] ,
-//     "Video": ["mp4" , "mkv"],
-//     "Applications" : ["exe"]
-// }
 
 function checkExtensionFolder(extension){
     // extension = "doc";
@@ -43,16 +36,22 @@ function checkExtensionFolder(extension){
     if(!isFolderExist){
         fs.mkdirSync(extensionFolderName);
     }
+    return extensionFolderName;
 }
 
-function moveFile(file , extension){
-
+function moveFile(file , extensionFolderName){
+    let sourceFile = testFolderPath+"/"+file;
+    let destinationFile = extensionFolderName+"/"+file;
+    // copy file from the source path to destination path !!
+    fs.copyFileSync(sourceFile , destinationFile);
+    // then delete file from the source path !!
+    fs.unlinkSync(sourceFile);
 }
 
 
 function sortFile(file){
     let extension = getExtension(file);
     // console.log(extension);
-    checkExtensionFolder(extension);
-    // moveFile();
+    let extensionFolderName = checkExtensionFolder(extension);
+    moveFile(file , extensionFolderName );
 }

@@ -6,3 +6,4 @@ module.exports = {
     "Applications" : ["exe"]
 }
 
+

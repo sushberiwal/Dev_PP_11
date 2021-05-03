@@ -5,19 +5,15 @@ let extensionsMapping = require("./util.js");
 
 let testFolderPath = "./Downloads";
 let allFiles = fs.readdirSync(testFolderPath);
-// console.log(allFiles);
 
 for(let i=0 ; i<allFiles.length ; i++){
     sortFile(allFiles[i]);
 }
 
-
 function getExtension(file){
     file = file.split(".");
     return file[1];
 }
-
-
 function checkExtensionFolder(extension){
     // extension = "doc";
     let extensionFolderName = testFolderPath;
@@ -38,7 +34,6 @@ function checkExtensionFolder(extension){
     }
     return extensionFolderName;
 }
-
 function moveFile(file , extensionFolderName){
     let sourceFile = testFolderPath+"/"+file;
     let destinationFile = extensionFolderName+"/"+file;
@@ -47,8 +42,6 @@ function moveFile(file , extensionFolderName){
     // then delete file from the source path !!
     fs.unlinkSync(sourceFile);
 }
-
-
 function sortFile(file){
     let extension = getExtension(file);
     // console.log(extension);

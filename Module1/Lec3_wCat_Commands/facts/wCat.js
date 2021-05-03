@@ -13,7 +13,7 @@ let f2KaData = fs.readFileSync("./f2.txt", "utf8");
 
 // f1KaData
 // -s flag => remove extra spaces !!!
-function applySFlag(f1KaData) {
+function applySFlag(data) {
   // Hey I am F1
   // space
   // space
@@ -23,9 +23,10 @@ function applySFlag(f1KaData) {
   // Bye I am F1
   let emptyIncluded = false;
   let removedSpaces = [];
-  let splittedData = f1KaData.split("\r\n");
-  //   [ 'Hey I am F1', '', '', '', '',  '','Bye I am F1', ''];
-  console.log(splittedData);
+  let splittedData = data.split("\r\n");
+  //   [ 'Hey I am F1', '', '', '', '',  '','Bye I am F1', '' , "Hey m also f1"];
+//   splittedData.length = 9
+// i=6;
 
   for (let i = 0; i < splittedData.length; i++) {
     if (splittedData[i] == "" && emptyIncluded == false) {
@@ -36,7 +37,6 @@ function applySFlag(f1KaData) {
       if(i < splittedData.length-2 ) emptyIncluded = false;
     }
   }
-
   let removedSpacesString = removedSpaces.join("\r\n");
   return removedSpacesString;
   // Hey I am F1
@@ -44,5 +44,40 @@ function applySFlag(f1KaData) {
   // Bye I am F1
 }
 
-let removedSpacesString = applySFlag(f1KaData);
-console.log(removedSpacesString);
+// let removedSpacesString = applySFlag(f1KaData);
+// console.log(removedSpacesString);
+
+
+
+// -b flag => add line number to non empty lines
+function applyBFlag(data){
+    let count = 1;
+    let splittedData = data.split("\r\n");
+    for(let i=0 ; i<splittedData.length ; i++){
+        if(splittedData[i] != ''){
+            splittedData[i] = `${count}. ${splittedData[i]}`;
+            // splittedData[i] = count+". "+splittedData[i];
+            count++;
+        }
+    }
+    // console.log(splittedData);
+    let bFlaggedString = splittedData.join("\n");
+    return bFlaggedString;
+}
+let bFlaggedString = applyBFlag(f1KaData);
+console.log(bFlaggedString);
+
+// -n flag
+function applyNFlag(data){
+    let count = 1;
+    let splittedData = data.split("\r\n");
+    for(let i=0 ; i<splittedData.length ; i++){
+            splittedData[i] = `${count}. ${splittedData[i]}`;
+            count++;
+    }
+    // console.log(splittedData);
+    let nFlaggedString = splittedData.join("\n");
+    return nFlaggedString;
+}
+console.log(applyNFlag(f1KaData));
+

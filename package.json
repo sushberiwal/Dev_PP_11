@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sushberiwal/Dev_PP_11#readme",
   "dependencies": {
-    "cheerio": "*"
+    "cheerio": "*",
+    "request": "^2.88.2"
   }
 }

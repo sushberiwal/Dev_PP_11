@@ -6,12 +6,14 @@ const flags = [];
 const files = [];
 
 for (let i = 0; i < contents.length; i++) {
+    // "-s" , "-b" , "f1.txt" , "f2.txt" , "-n"
   if (contents[i].startsWith("-")) {
     flags.push(contents[i]);
   } else {
     files.push(contents[i]);
   }
 }
+
 // -s -b -n
 // f1.txt // f2.txt
 

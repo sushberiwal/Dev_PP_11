@@ -1,4 +1,5 @@
 let fs = require("fs");
+
 function getFilesData(files) {
   let filesData = "";
   for (let i = 0; i < files.length; i++) {
@@ -69,7 +70,12 @@ function applyNFlag(data) {
   let nFlaggedString = splittedData.join("\n");
   return nFlaggedString;
 }
-module.exports.getFilesData = getFilesData;
-module.exports.applySFlag = applySFlag;
-module.exports.applyBFlag = applyBFlag;
-module.exports.applyNFlag = applyNFlag;
+
+module.exports = {
+  getFilesData,
+  applySFlag,
+  applyBFlag,
+  applyNFlag
+}
+
+

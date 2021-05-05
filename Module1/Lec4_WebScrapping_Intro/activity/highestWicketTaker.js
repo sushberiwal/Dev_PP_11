@@ -6,6 +6,7 @@ const cheerio = require("cheerio");
 // request is a high order function
 
 request( matchLink , cb );
+
 function cb(error , response , data){
     // console.log("got the data !!!");
     // console.log(data);
@@ -26,7 +27,6 @@ function getHighestWicketTaker(data){
     //     "0" : {bowling table} ,
     //     "1" : {bowling table}
     // }
-    
     let highestWicketTakenName;
     let highestWicketsTaken;
     let economyOfHighestWicketTaker;

@@ -43,7 +43,6 @@ function processData(html){
     }
     console.log("############################################");
 }
-
 function checkTeamFolder(teamName){
     // teamFolderPath = "./IPL/Delhi Capitals"
     let teamFolderPath = `./IPL/${teamName}`;
@@ -84,7 +83,6 @@ function createTeamFolder(teamName){
     let teamFolderPath = `./IPL/${teamName}`;
     fs.mkdirSync(teamFolderPath);
 }
-
 function processDetails(teamName , batsmanName , runs , balls , fours , sixes , strikeRate){
     let isTeamFolder = checkTeamFolder(teamName);
     if(isTeamFolder){

@@ -1,0 +1,39 @@
+[
+  { "projectName": "hub", "projectLink": "https://www.github.com/github/hub" },
+  {
+    "projectName": "profile-summary-for-github",
+    "projectLink": "https://www.github.com/tipsy/profile-summary-for-github"
+  },
+  {
+    "projectName": "go-github",
+    "projectLink": "https://www.github.com/google/go-github"
+  },
+  {
+    "projectName": "devhub",
+    "projectLink": "https://www.github.com/devhubapp/devhub"
+  },
+  {
+    "projectName": "gitsome",
+    "projectLink": "https://www.github.com/donnemartin/gitsome"
+  },
+  {
+    "projectName": "github-changelog-generator",
+    "projectLink": "https://www.github.com/github-changelog-generator/github-changelog-generator"
+  },
+  {
+    "projectName": "gitrob",
+    "projectLink": "https://www.github.com/michenriksen/gitrob"
+  },
+  {
+    "projectName": "PyGithub",
+    "projectLink": "https://www.github.com/PyGithub/PyGithub"
+  },
+  {
+    "projectName": "Gitter",
+    "projectLink": "https://www.github.com/kokohuang/Gitter"
+  },
+  {
+    "projectName": "octokit.rb",
+    "projectLink": "https://www.github.com/octokit/octokit.rb"
+  }
+]

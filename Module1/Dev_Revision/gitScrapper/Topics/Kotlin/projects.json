@@ -1,0 +1,42 @@
+[
+  {
+    "projectName": "free-programming-books-zh_CN",
+    "projectLink": "https://www.github.com/justjavac/free-programming-books-zh_CN"
+  },
+  {
+    "projectName": "okhttp",
+    "projectLink": "https://www.github.com/square/okhttp"
+  },
+  {
+    "projectName": "kotlin",
+    "projectLink": "https://www.github.com/JetBrains/kotlin"
+  },
+  {
+    "projectName": "leakcanary",
+    "projectLink": "https://www.github.com/square/leakcanary"
+  },
+  {
+    "projectName": "profile-summary-for-github",
+    "projectLink": "https://www.github.com/tipsy/profile-summary-for-github"
+  },
+  {
+    "projectName": "material-dialogs",
+    "projectLink": "https://www.github.com/afollestad/material-dialogs"
+  },
+  {
+    "projectName": "anko",
+    "projectLink": "https://www.github.com/Kotlin/anko"
+  },
+  {
+    "projectName": "MMKV",
+    "projectLink": "https://www.github.com/Tencent/MMKV"
+  },
+  {
+    "projectName": "tachiyomi",
+    "projectLink": "https://www.github.com/tachiyomiorg/tachiyomi"
+  },
+  {
+    "projectName": "recyclerview-animators",
+    "projectLink": "https://www.github.com/wasabeef/recyclerview-animators"
+  }
+]

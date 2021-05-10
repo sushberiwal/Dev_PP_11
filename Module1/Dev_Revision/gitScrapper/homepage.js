@@ -1,5 +1,8 @@
 const cheerio = require("cheerio");
 const request = require("request");
+const fs = require("fs");
+const getTopicProjects = require("./getTopicProjects");
+
 
 // high order function + async function !!!
 request("https://github.com/topics" , function(err , res , data){
@@ -7,7 +10,7 @@ request("https://github.com/topics" , function(err , res , data){
     processData(data);
 })
 
-let githubTopics = [];
+// let githubTopics = [];
 
 function processData(html){
     let myDocument = cheerio.load(html);
@@ -18,9 +21,10 @@ function processData(html){
         let topicATag = myDocument(allTopicsDiv[i]).find("a");
         let topicLink = "https://www.github.com"+topicATag.attr("href");
         let topicName = topicATag.find(".f3").text().split("\n")[1].trim();
-
-        githubTopics.push( {TopicName : topicName , Link : topicLink} );        
+        let topicFolderPath = `./Topics/${topicName}`;
+        fs.mkdirSync(topicFolderPath);
+        getTopicProjects(topicName , topicLink);
     }
 
-    console.log(githubTopics);
+    // console.log(githubTopics);
 }

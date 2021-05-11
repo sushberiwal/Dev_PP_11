@@ -25,6 +25,6 @@ function processData(html){
         fs.mkdirSync(topicFolderPath);
         getTopicProjects(topicName , topicLink);
     }
-
     // console.log(githubTopics);
 }
+

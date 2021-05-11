@@ -1,1 +1,42 @@
-[{"projectName":"vue-element-admin","projectLink":"https://www.github.com/PanJiaChen/vue-element-admin"},{"projectName":"storybook","projectLink":"https://www.github.com/storybookjs/storybook"},{"projectName":"webpack","projectLink":"https://www.github.com/webpack/webpack"},{"projectName":"vue2-elm","projectLink":"https://www.github.com/bailicangdu/vue2-elm"},{"projectName":"ngx-admin","projectLink":"https://www.github.com/akveo/ngx-admin"},{"projectName":"react-starter-kit","projectLink":"https://www.github.com/kriasoft/react-starter-kit"},{"projectName":"react-redux-links","projectLink":"https://www.github.com/markerikson/react-redux-links"},{"projectName":"js-stack-from-scratch","projectLink":"https://www.github.com/verekia/js-stack-from-scratch"},{"projectName":"generator-jhipster","projectLink":"https://www.github.com/jhipster/generator-jhipster"},{"projectName":"electron-react-boilerplate","projectLink":"https://www.github.com/electron-react-boilerplate/electron-react-boilerplate"}]
+[
+  {
+    "projectName": "vue-element-admin",
+    "projectLink": "https://www.github.com/PanJiaChen/vue-element-admin"
+  },
+  {
+    "projectName": "storybook",
+    "projectLink": "https://www.github.com/storybookjs/storybook"
+  },
+  {
+    "projectName": "webpack",
+    "projectLink": "https://www.github.com/webpack/webpack"
+  },
+  {
+    "projectName": "vue2-elm",
+    "projectLink": "https://www.github.com/bailicangdu/vue2-elm"
+  },
+  {
+    "projectName": "ngx-admin",
+    "projectLink": "https://www.github.com/akveo/ngx-admin"
+  },
+  {
+    "projectName": "react-starter-kit",
+    "projectLink": "https://www.github.com/kriasoft/react-starter-kit"
+  },
+  {
+    "projectName": "react-redux-links",
+    "projectLink": "https://www.github.com/markerikson/react-redux-links"
+  },
+  {
+    "projectName": "js-stack-from-scratch",
+    "projectLink": "https://www.github.com/verekia/js-stack-from-scratch"
+  },
+  {
+    "projectName": "generator-jhipster",
+    "projectLink": "https://www.github.com/jhipster/generator-jhipster"
+  },
+  {
+    "projectName": "electron-react-boilerplate",
+    "projectLink": "https://www.github.com/electron-react-boilerplate/electron-react-boilerplate"
+  }
+]

@@ -3,11 +3,15 @@ const request = require("request");
 const fs = require("fs");
 // let matchLink = "https://www.espncricinfo.com/series/ipl-2020-21-1210595/delhi-capitals-vs-mumbai-indians-final-1237181/full-scorecard";
 
-let leaderboard = [];
-let countOfRequestSent=0;
+let leaderboard = [] ;
+let countOfRequestSent=0 ;
+
 
 function getMatchDetails(matchLink){
     console.log("Sending Request " , countOfRequestSent);
+    countOfRequestSent++;
+
+// Async call
     request(matchLink , function(error , response , data){
         countOfRequestSent--;
         processData(data);
@@ -16,7 +20,6 @@ function getMatchDetails(matchLink){
             console.table(leaderboard);
         }
     })
-    countOfRequestSent++;
 }
 
 
@@ -83,8 +86,6 @@ function processLeaderBoard(teamName , batsmanName , runs , balls , fours , sixe
     }
     leaderboard.push(batsmanObject);
 }
-
-
 
 
 module.exports = getMatchDetails;

@@ -17,3 +17,4 @@ f1KaPromise.then(function(data){
         })
     })
 })
+

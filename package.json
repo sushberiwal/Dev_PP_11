@@ -19,6 +19,7 @@
   "homepage": "https://github.com/sushberiwal/Dev_PP_11#readme",
   "dependencies": {
     "cheerio": "*",
+    "puppeteer": "^9.1.1",
     "request": "^2.88.2"
   }
 }

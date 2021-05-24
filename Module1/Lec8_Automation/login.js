@@ -33,29 +33,54 @@ browserOpenPromise
       ".ui-btn.ui-btn-large.ui-btn-primary.auth-button.ui-btn-styled"
     ); // login hojata hai click se
   })
-  .then(function(){
-    return waitAndClick("#base-card-1-link"); // make this function a promisified function !!
+  .then(function () {
+    return waitAndClick("#base-card-1-link");
   })
-  .then(function(){
+  .then(function () {
     return waitAndClick('a[data-attr1="warmup"]');
   })
-  .catch(function(err){
-    console.log(err);
+  .then(function () {
+    return tab.waitForSelector(".js-track-click.challenge-list-item", {
+      visible: true,
+    });
   })
+  .then(function () {
+    return tab.$$(".js-track-click.challenge-list-item");
+  })
+  .then(function (allQuesArray) {
+    // [<a /> , <a /> , <a /> , <a />];
+    let allPendingPromises = [];
+    for (let i = 0; i < allQuesArray.length; i++) {
+      let oneATag = allQuesArray[i];
+      let pendingPromise = oneATag.evaluate(function (element) { return element.getAttribute("href");}  , oneATag);
+      allPendingPromises.push(pendingPromise);
+    }
+    // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
+    console.log(allPendingPromises);
 
-  function waitAndClick(selector){
-    return new Promise( function(scb , fcb){
-      let waitPromise = tab.waitForSelector( selector , { visible: true });
-      waitPromise.then(function(){
-         return tab.click(selector);
+    let allPromisesCombined = Promise.all(allPendingPromises);
+    // Promise<Pending>
+    return allPromisesCombined;
+  })
+  .then(function(allQuesLinks){
+    console.log(allQuesLinks);
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
+
+function waitAndClick(selector) {
+  return new Promise(function (scb, fcb) {
+    let waitPromise = tab.waitForSelector(selector, { visible: true });
+    waitPromise
+      .then(function () {
+        return tab.click(selector);
       })
-      .then(function(){
+      .then(function () {
         scb();
       })
-      .catch(function(){
+      .catch(function () {
         fcb();
-      })
-    });
-  }
-
-  
+      });
+  });
+}

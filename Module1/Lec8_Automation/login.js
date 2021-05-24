@@ -45,7 +45,7 @@ browserOpenPromise
     });
   })
   .then(function () {
-    return tab.$$(".js-track-click.challenge-list-item");
+    return tab.$$(".js-track-click.challenge-list-item"); // it will run document.querySelectorAll in the browser and gives you array of all the elements
   })
   .then(function (allQuesArray) {
     // [<a /> , <a /> , <a /> , <a />];

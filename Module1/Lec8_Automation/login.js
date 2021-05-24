@@ -33,17 +33,29 @@ browserOpenPromise
       ".ui-btn.ui-btn-large.ui-btn-primary.auth-button.ui-btn-styled"
     ); // login hojata hai click se
   })
-//   wait and click !!
-  .then(function () {
-    return tab.waitForSelector("#base-card-1-link", { visible: true });
+  .then(function(){
+    return waitAndClick("#base-card-1-link"); // make this function a promisified function !!
   })
-  .then(function () {
-    return tab.click("#base-card-1-link");
+  .then(function(){
+    return waitAndClick('a[data-attr1="warmup"]');
   })
-//   wait and click !!
-  .then(function () {
-    return tab.waitForSelector('a[data-attr1="warmup"]', { visible: true });
+  .catch(function(err){
+    console.log(err);
   })
-  .then(function () {
-    return tab.click('a[data-attr1="warmup"]');
-  });
+
+  function waitAndClick(selector){
+    return new Promise( function(scb , fcb){
+      let waitPromise = tab.waitForSelector( selector , { visible: true });
+      waitPromise.then(function(){
+         return tab.click(selector);
+      })
+      .then(function(){
+        scb();
+      })
+      .catch(function(){
+        fcb();
+      })
+    });
+  }
+
+  

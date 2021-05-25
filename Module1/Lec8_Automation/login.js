@@ -2,6 +2,8 @@ const puppeteer = require("puppeteer");
 const id = "misid46226@isecv.com";
 const pw = "123456789";
 let tab;
+let idx;
+let gCode;
 
 // puppeteer has promisfied functions
 
@@ -72,21 +74,67 @@ browserOpenPromise
     console.log(err);
   });
 
+  function getCode(){
+    return new Promise(function(scb , fcb){
+      let waitPromise = tab.waitForSelector(".hackdown-content h3" , {visible:true});
+      waitPromise.then(function(){
+        return tab.$$(".hackdown-content h3");
+      })
+      .then(function(allCodeNamesElement){
+        // [<h3>C++</h3> , <h3>Python</h3> , <h3>Java</h3> ]
+        let allCodeNamesPromise = [];
+
+        for(let i=0 ; i<allCodeNamesElement.length ; i++){
+          let codeNamePromise = tab.evaluate( function(elem){  return elem.textContent;   }  , allCodeNamesElement[i]  );
+          allCodeNamesPromise.push(codeNamePromise);
+        }
+        // allCodeNamesPromise = [Promise<data> , Promise<data> , Promise<data> ];
+        let combinedPromise = Promise.all( allCodeNamesPromise );
+        // Promise<Pending> => Promise< [data,data,data] >
+        return combinedPromise;
+      })
+      .then(function(allCodeNames){
+        // [C++ , Python , Java];
+        for(let i= 0 ;i<allCodeNames.length ; i++){
+          if(allCodeNames[i] == "C++"){
+            idx = i;
+            break;
+          }
+        }
+        return tab.$$(".hackdown-content .highlight"); // document.querySelectorAll
+      })
+      .then(function(allCodeDiv){
+        // [<div></div> , <div></div> , <div></div>];
+        let codeDiv = allCodeDiv[idx];
+        return tab.evaluate(function(elem){ return elem.textContent;   }  , codeDiv);
+      })
+      .then(function(code){
+        gCode = code;
+        scb();
+      })
+      .catch(function(error){
+        fcb(error);
+      })
+    })
+  }
 
   function solveQuestion(quesLink){
-
     return new Promise( function(scb , fcb){
       let gotoPromise = tab.goto("https://www.hackerrank.com"+quesLink);
       gotoPromise.then(function(){
        return waitAndClick('div[data-attr2="Editorial"]');
       })
       .then(function(){
-        
+        return getCode();
+      })
+      .then(function(){
+        console.log("Got C++ code succesfully !!");
+      })
+      .catch(function(error){
+        fcb(error);
       })
     });
   }
-
-
 
 
 function waitAndClick(selector) {

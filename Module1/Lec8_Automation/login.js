@@ -45,6 +45,7 @@ browserOpenPromise
     });
   })
   .then(function () {
+    // tab.$() // document.querySelector;
     return tab.$$(".js-track-click.challenge-list-item"); // it will run document.querySelectorAll in the browser and gives you array of all the elements
   })
   .then(function (allQuesArray) {
@@ -56,18 +57,37 @@ browserOpenPromise
       allPendingPromises.push(pendingPromise);
     }
     // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
-    console.log(allPendingPromises);
-
     let allPromisesCombined = Promise.all(allPendingPromises);
     // Promise<Pending>
     return allPromisesCombined;
   })
   .then(function(allQuesLinks){
-    console.log(allQuesLinks);
+    let oneQuesSolvePromise = solveQuestion(allQuesLinks[0]);
+    return oneQuesSolvePromise;   
   })
-  .catch(function (err) {
+  .then(function(){
+
+  })
+  .catch(function(err){
     console.log(err);
   });
+
+
+  function solveQuestion(quesLink){
+
+    return new Promise( function(scb , fcb){
+      let gotoPromise = tab.goto("https://www.hackerrank.com"+quesLink);
+      gotoPromise.then(function(){
+       return waitAndClick('div[data-attr2="Editorial"]');
+      })
+      .then(function(){
+        
+      })
+    });
+  }
+
+
+
 
 function waitAndClick(selector) {
   return new Promise(function (scb, fcb) {

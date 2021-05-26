@@ -55,7 +55,7 @@ browserOpenPromise
     let allPendingPromises = [];
     for (let i = 0; i < allQuesArray.length; i++) {
       let oneATag = allQuesArray[i];
-      let pendingPromise = oneATag.evaluate(function (element) { return element.getAttribute("href");}  , oneATag);
+      let pendingPromise = tab.evaluate(function (element) { return element.getAttribute("href");}  , oneATag);
       allPendingPromises.push(pendingPromise);
     }
     // [ Promise<Pending> , Promise<Pending> , Promise<Pending> , Promise<Pending> ];
@@ -211,9 +211,7 @@ browserOpenPromise
       })
     });
   }
-
-
-function waitAndClick(selector) {
+ function waitAndClick(selector) {
   return new Promise(function (scb, fcb) {
     let waitPromise = tab.waitForSelector(selector, { visible: true });
     waitPromise
@@ -227,4 +225,4 @@ function waitAndClick(selector) {
         fcb();
       });
   });
-}
+ }

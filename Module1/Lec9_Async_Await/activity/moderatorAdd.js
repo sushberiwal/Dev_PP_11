@@ -24,5 +24,38 @@ async function login(){
     let bothLis = await tab.$$('.nav-tabs.nav.admin-tabbed-nav li');
     let manageChallengeLi = bothLis[1];
     await manageChallengeLi.click();
+    await addModerators(browser , tab);
 };
 login();
+
+
+async function addModerators(browser , tab){
+    await tab.waitForSelector('.backbone.block-center' , {visible:true});
+    let allATags = await tab.$$('.backbone.block-center');
+    let allQuesLinks = [];
+    for(let i=0 ; i<allATags.length ; i++){
+        let qLink = await tab.evaluate( function(elem){  return elem.getAttribute("href");  }   , allATags[i]);
+        qLink = "https://www.hackerrank.com"+qLink;
+        allQuesLinks.push(qLink);
+    }
+
+    for(let i=0 ; i<allQuesLinks.length ; i++){
+        let qLink = allQuesLinks[i];
+        let newTab = await browser.newPage();
+        await addModeratorToASingleQues(newTab , qLink);
+    }
+
+}
+
+
+async function addModeratorToASingleQues(newTab , qLink){
+       await newTab.goto(qLink);
+       await newTab.waitForTimeout(2000);
+       await newTab.click('li[data-tab="moderators"]');
+       await newTab.waitForSelector('#moderator' , {visible:true});
+       await newTab.type("#moderator" , "pep");
+       await newTab.click('.btn.moderator-save');
+       await newTab.click('.save-challenge.btn.btn-green');
+       await newTab.waitForTimeout(2000);
+       await newTab.close();
+}

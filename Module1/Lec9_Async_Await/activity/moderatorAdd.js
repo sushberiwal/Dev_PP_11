@@ -2,6 +2,7 @@ const id = "pamico3332@nic58.com";
 const pw = "12345678";
 const puppeteer = require("puppeteer");
 
+
 async function login(){
     let browser = await puppeteer.launch({
         headless: false,
@@ -45,6 +46,20 @@ async function addModerators(browser , tab){
         await addModeratorToASingleQues(newTab , qLink);
     }
 
+    // next button active hai to click on next
+    // addModerators(browser , tab);
+
+    let allLis = await tab.$$('.pagination li');
+    let nextBtnLi = allLis[allLis.length-2];
+    let isDisabled = await tab.evaluate( function(elem){ return elem.classList.contains("disabled");  } , nextBtnLi );
+    // if true ??
+    if(isDisabled){
+        return;
+    }
+    // else false ??
+    await nextBtnLi.click();
+    await tab.waitForTimeout(5000);
+    await addModerators(browser , tab);
 }
 
 

@@ -30,8 +30,7 @@
     /* transition: transform 0.5s; */
 }
 
-
-.filter:hover{
+.filter:hover {
     opacity: 1;
     /* transform: scale(1.2); */
 }
@@ -75,8 +74,7 @@
     border-radius: 10px;
 }
 
-
-.ticket-actions div:hover{
+.ticket-actions div:hover {
     background-color: #636e72;
 }
 
@@ -89,3 +87,32 @@
     height: calc( 100vh - 80px );
 }
 
+.ticket-modal {
+    position: absolute;
+    top: 35%;
+    height: 300px;
+    width: 400px;
+    /* border: 1px solid lightgray; */
+    display: flex;
+    left: calc(50vw - 200px);
+}
+
+.ticket-text {
+    /* height: 100%; */
+    width: 70%;
+    background-color: #b2bec3;
+}
+
+.ticket-filters {
+    width: 30%;
+    background-color: #0B0C10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.ticket-filter {
+    height: 10%;
+    width: 60%;
+}

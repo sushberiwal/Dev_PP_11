@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: 'Lato', sans-serif;
 }
 
 .header {
@@ -101,6 +102,10 @@
     /* height: 100%; */
     width: 70%;
     background-color: #b2bec3;
+    outline: none;
+    padding: 15px;
+    font-size: 25px;
+    overflow: auto;
 }
 
 .ticket-filters {
@@ -115,4 +120,14 @@
 .ticket-filter {
     height: 10%;
     width: 60%;
+    opacity: 0.5;
+}
+
+.ticket-filter:hover{
+    opacity: 1;
+}
+
+.selected-filter {
+    border: 3px solid white;
+    opacity: 1;
 }

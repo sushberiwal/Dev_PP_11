@@ -13,6 +13,20 @@ function loadTickets() {
 }
 loadTickets();
 
+function loadSelectedTickets(filter){
+  let allTickets = myDB.getItem("allTickets");
+  if(allTickets) {
+    allTickets = JSON.parse(allTickets);
+    for (let i = 0; i < allTickets.length; i++) {
+      let ticketInfoObject = allTickets[i];
+      if(ticketInfoObject.ticketFilter == filter){
+        appendTicket(ticketInfoObject);
+      }
+    }
+  }
+}
+
+
 function saveTicketToDB(ticketInfoObject) {
   let allTickets = myDB.getItem("allTickets");
   if (allTickets) {

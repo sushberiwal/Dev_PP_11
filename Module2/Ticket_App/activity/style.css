@@ -175,3 +175,9 @@
     align-items: center;
     word-break: break-all;
 }
+
+.active-filter{
+    border: 2px solid white;
+    opacity: 1;
+    transform: scale(1.2);
+}

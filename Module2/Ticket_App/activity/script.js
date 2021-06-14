@@ -13,11 +13,22 @@ openModal.addEventListener("click", openTicketModal);
 closeModal.addEventListener("click", closeTicketModal);
 
 function selectFilter(e) {
-  let filterSelected = e.target.classList[1];
-  if (ticketsContainer.classList.length > 1) {
-    ticketsContainer.classList.remove(ticketsContainer.classList[1]);
+  if(e.target.classList.contains("active-filter")){
+    // ticket append are on basis of some filter
+    e.target.classList.remove("active-filter");
+    // append all tickets
+    ticketsContainer.innerHTML = "";
+    loadTickets();
   }
-  ticketsContainer.classList.add(filterSelected);
+  else{
+    if(document.querySelector(".active-filter")){
+      document.querySelector(".active-filter").classList.remove("active-filter");
+    }
+    e.target.classList.add("active-filter");
+    ticketsContainer.innerHTML = "";
+    let filterClicked = e.target.classList[1];
+    loadSelectedTickets(filterClicked);
+  }
 }
 
 function openTicketModal(e) {

@@ -1,9 +1,12 @@
 let allFilters = document.querySelectorAll(".filter");
 let openModal = document.querySelector(".open-modal");
 let closeModal = document.querySelector(".close-modal");
-
 let ticketModalOpen = false;
 let isTextTyped = false;
+
+
+
+
 
 for (let i = 0; i < allFilters.length; i++) {
   allFilters[i].addEventListener("click", selectFilter);

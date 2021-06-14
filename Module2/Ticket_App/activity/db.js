@@ -1,5 +1,7 @@
 let myDB = window.localStorage;
 let ticketsContainer = document.querySelector(".tickets-container");
+let allFilterClasses = ["red" , "blue" , "green" , "yellow" , "black"];
+
 
 function loadTickets() {
   let allTickets = myDB.getItem("allTickets");
@@ -53,6 +55,26 @@ function appendTicket(ticketInfoObject) {
         </div>
         <div class="ticket-value">${ticketValue}</div>
     </div>`;
+
+    let ticketHeader = ticketDiv.querySelector(".ticket-header");
+    ticketHeader.addEventListener("click" , function(e){
+      // logic which can switch ticket header color/filter
+      let currentFilter = e.target.classList[1]; //black
+      let indexOfCurrFilter = allFilterClasses.indexOf(currentFilter); //4
+      let newIndex = (indexOfCurrFilter + 1)%allFilterClasses.length; //0
+      let newFilter = allFilterClasses[newIndex]; //red
+
+      ticketHeader.classList.remove(currentFilter); // remove black
+      ticketHeader.classList.add(newFilter); // add red
+
+      let allTickets = JSON.parse(myDB.getItem("allTickets"));
+      for(let i=0 ; i<allTickets.length ; i++){
+        if(allTickets[i].ticketId == ticketId){
+          allTickets[i].ticketFilter = newFilter;
+        }
+      }
+      myDB.setItem("allTickets" , JSON.stringify(allTickets));
+    })
 
     let deleteTicketBtn = ticketDiv.querySelector(".ticket-delete");
     

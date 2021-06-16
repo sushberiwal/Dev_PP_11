@@ -40,3 +40,44 @@
 #canvas {
     /* background-color: aqua; */
 }
+
+.sticky {
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    height: 200px;
+    width: 250px;
+    /* background: bisque; */
+}
+
+.sticky-header {
+    height: 13%;
+    background: lightcyan;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sticky-header div {
+    height: 70%;
+    width: 7%;
+    margin-right: 10px;
+    border-radius: 50px;
+}
+
+.minimize {
+    background: lightskyblue;
+}
+
+.close {
+    background: lightcoral;
+}
+
+.sticky-content {
+    height: 87%;
+    /* border: 1px solid; */
+    border-bottom-right-radius: 20px;
+    background: lightsteelblue;
+    outline: none;
+    padding: 10px;
+}

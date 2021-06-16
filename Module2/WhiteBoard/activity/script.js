@@ -15,10 +15,14 @@ let ctx = canvas.getContext("2d");
 
 
 let linesDB = [];
+let redoLinesDB = [];
 let isPenDown = false;
 let line = [];
 
 canvas.addEventListener("mousedown" , function(e){
+    if(redoLinesDB.length){
+        redoLinesDB = [];
+    }
     console.log("Inside mouse down");
     isPenDown = true;
     let x = e.clientX;

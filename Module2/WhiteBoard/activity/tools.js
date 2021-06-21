@@ -31,9 +31,6 @@ function redoLine(){
         }
         linesDB.push(redoLine);
     }
-
-
-
 }
 
 function drawLinesFromDB(){

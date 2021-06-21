@@ -81,3 +81,13 @@
     outline: none;
     padding: 10px;
 }
+
+.sticky-image-div{
+    height:87%;
+}
+
+.sticky-image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

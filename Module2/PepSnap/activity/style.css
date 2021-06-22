@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+.video-container {
+    height: 100vh;
+    width: 100vw;
+    background: black;
+}
+
+video {
+    height: 100%;
+    width: 100%;
+}
+
+.controls {
+    position: absolute;
+    top: 25vh;
+    right: 5vw;
+    /* border: 1px solid red; */
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 160px;
+    align-items: center;
+}
+
+.controls>div {
+    width: 50%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#record {
+    border: 5px solid white;
+    border-radius: 50%;
+}
+
+.inner-record {
+    height: 70%;
+    width: 70%;
+    background: red;
+    border-radius: 50%;
+}
+
+#capture {
+    border: 5px solid white;
+    border-radius: 50%;
+}
+
+.inner-capture {
+    height: 70%;
+    width: 70%;
+    background: white;
+    border-radius: 50%;
+}
+
+
+.animate-record{
+    animation-name: scaleInScaleOut;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.animate-capture{
+    animation-name: scaleInScaleOut;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+
+
+@keyframes scaleInScaleOut{
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.1);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}

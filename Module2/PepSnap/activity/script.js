@@ -1,5 +1,6 @@
 let videoElement = document.querySelector("video");
 let recordButton = document.querySelector("#record");
+let capturePhoto = document.querySelector("#capture");
 let recordingState = false;
 let mediaRecorder;
 
@@ -35,12 +36,29 @@ let mediaRecorder;
       // stop the recording
       mediaRecorder.stop();
       recordButton.innerHTML = "Record Video";
-      recordingState=false;
+      recordingState = false;
     } else {
       // start the recording
       mediaRecorder.start();
       recordButton.innerHTML = "Recording..";
-      recordingState=true;
+      recordingState = true;
     }
+  });
+
+  capturePhoto.addEventListener("click", function () {
+    //   canvas
+    let canvas = document.createElement("canvas");
+    canvas.width = 640; //video width
+    canvas.height = 480; // video height
+
+    let ctx = canvas.getContext("2d");
+
+    ctx.drawImage(videoElement, 0, 0);
+    
+    // download canvas as an image
+    let aTag = document.createElement("a");
+    aTag.download = `Image${Date.now()}.jpg`;
+    aTag.href = canvas.toDataURL("image/jpg");
+    aTag.click();
   });
 })();

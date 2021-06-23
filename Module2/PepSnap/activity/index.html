@@ -6,37 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PepSnap</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <div class="video-container">
-      <video autoplay></video>
+      <video style="transform: scale(1);" autoplay></video>
     </div>
 
     <div class="video-filters">
       <div
         style="background-color: rgb(255, 255, 0, 0.2)"
-        class="filter one"
+        class="filter"
       ></div>
       <div
         style="background-color: rgb(102, 0, 255, 0.2)"
-        class="filter two"
+        class="filter"
       ></div>
       <div
         style="background-color: rgb(0, 255, 153, 0.2)"
-        class="filter three"
+        class="filter"
       ></div>
       <div
         style="background-color: rgb(0, 153, 255, 0.2)"
-        class="filter four"
+        class="filter"
       ></div>
       <div
         style="background-color: rgb(255, 0, 0, 0.2)"
-        class="filter five"
+        class="filter"
       ></div>
       <div class="filter"></div>
     </div>
 
+   
+
     <div class="controls">
+      <div class="zoom">
+        <div class="zoomIn">
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="zoomOut">
+          <i class="fas fa-minus"></i>
+        </div>
+      </div>
       <div id="record">
         <div class="inner-record"></div>
       </div>
@@ -44,11 +55,6 @@
         <div class="inner-capture"></div>
       </div>
     </div>
-
-    <!-- <div
-      class="filter-div"
-      style="background-color: rgb(255, 255, 0, 0.2)"
-    ></div> -->
 
     <script src="./script.js"></script>
   </body>

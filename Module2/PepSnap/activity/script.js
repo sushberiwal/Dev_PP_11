@@ -1,6 +1,9 @@
 let videoElement = document.querySelector("video");
 let recordButton = document.querySelector(".inner-record");
 let capturePhoto = document.querySelector(".inner-capture");
+let filters = document.querySelectorAll(".filter");
+let filterSelected = "none";
+
 let recordingState = false;
 let mediaRecorder;
 
@@ -41,16 +44,16 @@ let mediaRecorder;
       // start the recording
       mediaRecorder.start();
       recordingState = true;
-      recordButton.classList.add("animate-record");      
+      recordButton.classList.add("animate-record");
     }
   });
 
   capturePhoto.addEventListener("click", function () {
     capturePhoto.classList.add("animate-capture");
 
-    setTimeout( function(){
+    setTimeout(function () {
       capturePhoto.classList.remove("animate-capture");
-    }   , 1000  );
+    }, 1000);
 
     //   canvas
     let canvas = document.createElement("canvas");
@@ -60,7 +63,7 @@ let mediaRecorder;
     let ctx = canvas.getContext("2d");
 
     ctx.drawImage(videoElement, 0, 0);
-    
+
     // download canvas as an image
     let aTag = document.createElement("a");
     aTag.download = `Image${Date.now()}.jpg`;
@@ -68,3 +71,33 @@ let mediaRecorder;
     aTag.click();
   });
 })();
+
+for (let i = 0; i < filters.length; i++) {
+  filters[i].addEventListener("click", function (e) {
+    let currentFilterSelected = e.target.style.backgroundColor;
+    if (currentFilterSelected == "") {
+      if (document.querySelector(".filter-div")) {
+        document.querySelector(".filter-div").remove();
+        filterSelected = "none";
+        return;
+      }
+    }
+
+    console.log(currentFilterSelected);
+    if (filterSelected == currentFilterSelected) {
+      return;
+    }
+
+    let filterDiv = document.createElement("div");
+    filterDiv.classList.add("filter-div");
+    filterDiv.style.backgroundColor = currentFilterSelected;
+
+    if (filterSelected == "none") {
+      document.body.append(filterDiv);
+    } else {
+      document.querySelector(".filter-div").remove();
+      document.body.append(filterDiv);
+    }
+    filterSelected = currentFilterSelected;
+  });
+}

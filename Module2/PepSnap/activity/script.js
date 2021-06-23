@@ -67,6 +67,13 @@ let mediaRecorder;
     canvas.height = 480; // video height
 
     let ctx = canvas.getContext("2d");
+
+    if(currentZoom != 1){
+      ctx.translate(canvas.width/2 , canvas.height/2);
+      ctx.scale(currentZoom , currentZoom);
+      ctx.translate(-canvas.width/2 , -canvas.height/2);
+    }
+
     ctx.drawImage(videoElement, 0, 0);
 
     if (filterSelected != "none") {

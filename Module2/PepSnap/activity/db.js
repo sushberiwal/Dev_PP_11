@@ -1,5 +1,4 @@
 // initialize DB
-
 let db;
 
 let dbOpenRequest = indexedDB.open("Gallery", 1);

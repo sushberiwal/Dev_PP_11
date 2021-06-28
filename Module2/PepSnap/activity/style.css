@@ -20,7 +20,7 @@ video {
     top: 25vh;
     right: 5vw;
     /* border: 1px solid red; */
-    height: 300px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -31,7 +31,7 @@ video {
 
 .controls > div {
     width: 50%;
-    height: 25%;
+    height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,6 +116,15 @@ video {
 .fas {
     font-size: 1.5rem;
     color: white;
+}
+
+.gallery-btn {
+    background: black;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border: 2px solid white;
 }
 
 @keyframes scaleInScaleOut {

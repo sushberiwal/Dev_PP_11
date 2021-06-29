@@ -42,6 +42,7 @@ function initDB() {
         name: cellName,
         value: "",
         formula: "",
+        childrens:[]
       };
       row.push(cellObject);
     }

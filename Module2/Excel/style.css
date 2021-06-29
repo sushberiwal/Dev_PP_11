@@ -36,6 +36,7 @@
     min-width: 70px;
     min-height: 25px;
     outline: none;
+    max-width: 70px;
 }
 
 .top-left-cell {

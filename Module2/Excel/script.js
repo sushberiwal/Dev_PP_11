@@ -20,10 +20,10 @@ formulaInput.addEventListener("blur", function (e) {
   let formula = e.target.value;
   if (formula) {
     let cellObject = getCellObjectFromElement(lastSelectedCell);
-    if(cellObject.formula != formula){
+    if (cellObject.formula != formula) {
       deleteFormula(cellObject);
     }
-    
+
     let calculatedValue = solveFormula(formula, cellObject);
     // UI Update
     lastSelectedCell.textContent = calculatedValue;
@@ -36,32 +36,40 @@ formulaInput.addEventListener("blur", function (e) {
   }
 });
 
-function attachClickAndBlurEventOnCell(){
+function attachClickAndBlurEventOnCell() {
   for (let i = 0; i < allCells.length; i++) {
     allCells[i].addEventListener("click", function (e) {
       let cellObject = getCellObjectFromElement(e.target);
       address.value = cellObject.name;
       formulaInput.value = cellObject.formula;
     });
-  
+
     allCells[i].addEventListener("blur", function (e) {
       lastSelectedCell = e.target;
       // logic to save this value in db
       let cellValueFromUI = e.target.textContent;
       if (cellValueFromUI) {
         let cellObject = getCellObjectFromElement(e.target);
-  
+
         // check if the given cell has a formula on it
         if (cellObject.formula && cellValueFromUI != cellObject.value) {
           deleteFormula(cellObject);
-          formulaInput.value="";
+          formulaInput.value = "";
         }
-  
+
         // cellObject ki value update !!
         cellObject.value = cellValueFromUI;
-  
+
         //   update childrens of the current updated cell
         updateChildrens(cellObject.childrens);
+
+        // handle visited Cells
+        let rowId = lastSelectedCell.getAttribute("rowid");
+        let colId = lastSelectedCell.getAttribute("colid");
+        if (!cellObject.visited) {
+          visitedCells.push({ rowId, colId });
+          cellObject.visited = true;
+        }
       }
     });
   }

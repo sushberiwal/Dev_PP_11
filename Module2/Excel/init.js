@@ -2,6 +2,7 @@ let cellsContainer = document.querySelector(".cells");
 
 let sheetsDB = [];
 let db; // points to current DB
+let visitedCells; // points to current visited cells
 
 function initCells() {
   let cellsContent = '<div class="top-left-cell"></div>';
@@ -30,7 +31,7 @@ function initCells() {
 }
 
 function initDB() {
-  db = [];
+  let newDB = [];
   for (let i = 0; i < 100; i++) {
     let row = [];
     for (let j = 0; j < 26; j++) {
@@ -41,14 +42,18 @@ function initDB() {
         name: cellName,
         value: "",
         formula: "",
-        childrens:[],
-        parents:[]
+        childrens: [],
+        parents: [],
+        visited: false,
       };
       row.push(cellObject);
     }
-    db.push(row);
+    newDB.push(row);
   }
-  sheetsDB.push(db);
+  let dbObject = { db: newDB, visitedCells: [] };
+  sheetsDB.push(dbObject);
+  db = newDB;
+  visitedCells = dbObject.visitedCells;
 }
 
 initCells();

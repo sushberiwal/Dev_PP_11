@@ -36,34 +36,37 @@ formulaInput.addEventListener("blur", function (e) {
   }
 });
 
-for (let i = 0; i < allCells.length; i++) {
-  allCells[i].addEventListener("click", function (e) {
-    let cellObject = getCellObjectFromElement(e.target);
-    address.value = cellObject.name;
-    formulaInput.value = cellObject.formula;
-  });
-
-  allCells[i].addEventListener("blur", function (e) {
-    lastSelectedCell = e.target;
-    // logic to save this value in db
-    let cellValueFromUI = e.target.textContent;
-    if (cellValueFromUI) {
+function attachClickAndBlurEventOnCell(){
+  for (let i = 0; i < allCells.length; i++) {
+    allCells[i].addEventListener("click", function (e) {
       let cellObject = getCellObjectFromElement(e.target);
-
-      // check if the given cell has a formula on it
-      if (cellObject.formula && cellValueFromUI != cellObject.value) {
-        deleteFormula(cellObject);
-        formulaInput.value="";
+      address.value = cellObject.name;
+      formulaInput.value = cellObject.formula;
+    });
+  
+    allCells[i].addEventListener("blur", function (e) {
+      lastSelectedCell = e.target;
+      // logic to save this value in db
+      let cellValueFromUI = e.target.textContent;
+      if (cellValueFromUI) {
+        let cellObject = getCellObjectFromElement(e.target);
+  
+        // check if the given cell has a formula on it
+        if (cellObject.formula && cellValueFromUI != cellObject.value) {
+          deleteFormula(cellObject);
+          formulaInput.value="";
+        }
+  
+        // cellObject ki value update !!
+        cellObject.value = cellValueFromUI;
+  
+        //   update childrens of the current updated cell
+        updateChildrens(cellObject.childrens);
       }
-
-      // cellObject ki value update !!
-      cellObject.value = cellValueFromUI;
-
-      //   update childrens of the current updated cell
-      updateChildrens(cellObject.childrens);
-    }
-  });
+    });
+  }
 }
+attachClickAndBlurEventOnCell();
 
 function deleteFormula(cellObject) {
   cellObject.formula = "";

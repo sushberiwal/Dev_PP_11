@@ -26,6 +26,9 @@ formulaInput.addEventListener("blur", function (e) {
     // DB Update
     cellObject.value = calculatedValue;
     cellObject.formula = formula;
+
+    //childrens update
+    updateChildrens(cellObject.childrens);
   }
 });
 
@@ -41,14 +44,40 @@ for (let i = 0; i < allCells.length; i++) {
     // logic to save this value in db
     let cellValueFromUI = e.target.textContent;
     if (cellValueFromUI) {
-      // cellObject ki value update !!
       let cellObject = getCellObjectFromElement(e.target);
+
+      // check if the given cell has a formula on it
+      if (cellObject.formula && cellValueFromUI != cellObject.value) {
+        deleteFormula(cellObject);
+        formulaInput.value="";
+      }
+
+      // cellObject ki value update !!
       cellObject.value = cellValueFromUI;
 
       //   update childrens of the current updated cell
       updateChildrens(cellObject.childrens);
     }
   });
+}
+
+function deleteFormula(cellObject) {
+  cellObject.formula = "";
+  for (let i = 0; i < cellObject.parents.length; i++) {
+    let parentName = cellObject.parents[i];
+    // A1
+    let parentCellObject = getCellObjectFromName(parentName);
+    let updatedChildrens = parentCellObject.childrens.filter(function (
+      childName
+    ) {
+      if (childName == cellObject.name) {
+        return false;
+      }
+      return true;
+    });
+    parentCellObject.childrens = updatedChildrens;
+  }
+  cellObject.parents = [];
 }
 
 function solveFormula(formula, selfCellObject) {
@@ -70,6 +99,8 @@ function solveFormula(formula, selfCellObject) {
       if (selfCellObject) {
         //add yourself as a child of parentCellObject
         parentCellObject.childrens.push(selfCellObject.name);
+        // update your parents
+        selfCellObject.parents.push(parentCellObject.name);
       }
 
       formula = formula.replace(fComp, value);
@@ -92,6 +123,7 @@ function getCellObjectFromName(name) {
   let rowId = Number(name.substring(1)) - 1;
   return db[rowId][colId];
 }
+
 function updateChildrens(childrens) {
   for (let i = 0; i < childrens.length; i++) {
     let child = childrens[i];
@@ -103,7 +135,9 @@ function updateChildrens(childrens) {
     //ui update
     let colId = child.charCodeAt(0) - 65;
     let rowId = Number(child.substring(1)) - 1;
-    document.querySelector(`div[rowid="${rowId}"][colid="${colId}"]`).textContent = updatedValueOfChild;
+    document.querySelector(
+      `div[rowid="${rowId}"][colid="${colId}"]`
+    ).textContent = updatedValueOfChild;
     //recursive call
     updateChildrens(childCellObject.childrens);
   }

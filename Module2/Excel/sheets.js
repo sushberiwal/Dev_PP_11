@@ -81,6 +81,7 @@ function cleanUI() {
     let idx = Number(rowId) * 26 + Number(colId);
     console.log(idx);
     allCells[idx].innerHTML = "";
+    allCells[idx].style = "";
     // console.log(allCells[idx]);
   }
 }

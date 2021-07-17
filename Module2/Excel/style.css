@@ -5,13 +5,51 @@
     font-family: 'Roboto', sans-serif;
 }
 
-body{
+body {
     font-size: 0.8rem;
 }
 
 .menu-options {
     height: 50px;
-    background: aqua;
+    display: flex;
+    align-items: center;
+}
+
+.menu-options>div {
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-right: 1px solid lightgray;
+    height: 75%;
+}
+
+.menu-options-1>div {
+    height: 65%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.menu-options-1>div:hover , .menu-options-2>div:hover{
+    background-color: lightgray;
+}
+
+.menu-options-2>div {
+    height: 65%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.menu-options-3>div {
+}
+
+.menu-options-4>div {
 }
 
 .formula-tab {

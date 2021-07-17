@@ -49,3 +49,35 @@ function handleMenuOptionsOne(buttonClicked) {
     cellObject.fontStyles.underline = !cellObject.fontStyles.underline;
   }
 }
+
+let left = document.querySelector(".left");
+let center = document.querySelector(".center");
+let right = document.querySelector(".right");
+
+left.addEventListener("click", function () {
+  handleTextAlign("left");
+});
+center.addEventListener("click", function () {
+  handleTextAlign("center");
+});
+right.addEventListener("click", function () {
+  handleTextAlign("right");
+});
+
+function handleTextAlign(alignment) {
+  let cellObject = getCellObjectFromElement(lastSelectedCell);
+  if (alignment == cellObject.textAlign) {
+    return;
+  }
+  // remove prev active menu from text align
+  document
+    .querySelector(".menu-options-2 .active-menu")
+    .classList.remove("active-menu");
+
+  document.querySelector("." + alignment).classList.add("active-menu");
+  // Db me text align set krna hoga
+  cellObject.textAlign = alignment;
+
+  // UI pe alignmnet change hogi
+  lastSelectedCell.style.textAlign = alignment;
+}

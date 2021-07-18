@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+.chat-app {
+    display: flex;
+    height: 100vh;
+}
+
+.left-view {
+    width: 30%;
+    background: aqua;
+}
+
+.right-view {
+    width: 70%;
+    background: black;
+}

@@ -1,3 +1,4 @@
+let name = prompt("Enter Your Name !");
 let chatInputBox = document.querySelector(".chat-input");
 let chatWindow = document.querySelector(".chat-window"); 
 
